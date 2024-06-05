@@ -1,0 +1,211 @@
+/* ************************** */
+/* Messages (notification) */
+/* ************************** */
+
+.messages-container {
+  display: flex;
+  gap: 1.6rem;
+  flex-direction: column;
+  position: absolute;
+
+  top: 3.2rem;
+  right: 3.2rem;
+
+  min-height: 20rem;
+  min-width: 20rem;
+
+  transition: all 0.6s;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  font-size: 1.5rem;
+  padding: 1.2rem 1rem 1.2rem 3rem;
+  border-radius: 11px;
+}
+
+.message-success {
+  background-color: #37b24d;
+}
+
+.message-error {
+  background-color: #f03e3e
+}
+
+.notification-close {
+  display: flex;
+  justify-content: center;
+  background-color: inherit;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+.icon-close {
+  font-size: 1.6rem;
+}
+
+/* ************************** */
+/* Auth form components */
+/* ************************** */
+
+.form-error {
+  font-size: 1.4rem;
+  color: #f00;
+}
+
+.login-page,
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+  margin: 0 3.2rem;
+}
+
+.auth-heading {
+  font-size: 4rem;
+  margin-bottom: 2.4rem;
+}
+
+.form-box {
+  display: block;
+  padding: 3.2rem 1.6rem;
+  box-shadow: 0.8rem 1.2rem 3.2rem rgba(0, 0, 0, 0.05);
+}
+
+.field-label {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+}
+
+
+.fields-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  margin-bottom: 2.8rem;
+}
+
+.field-input {
+  width: 100%;
+  margin-bottom: 0.4rem;
+  padding: 1.2rem;
+  border: 1px solid #36453d;
+
+}
+
+.field-input:focus {
+  outline: none;
+  outline: #36453d 1px solid;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  color: #ffff;
+  background-color: #254336;
+  font-size: 1.6rem;
+  padding: 1rem 0;
+  margin-bottom: 2.4rem;
+  border-radius: 11px;
+}
+
+.btn-primary:hover {
+  background-color: #51695e;
+}
+
+.password-input {
+  position: relative;
+}
+
+.password-show-icon {
+  font-size: 1.6rem;
+  position: absolute;
+  top: 50%;
+  right: 1.8rem;
+  transform: translateY(-50%);
+
+  cursor: pointer;
+}
+
+.auth-links {
+  display: flex;
+  gap: 3.2rem;
+}
+
+
+/* ************************** */
+/* Register page */
+/* ************************** */
+
+.grid {
+  display: grid;
+  column-gap: 2.4rem;
+}
+
+.register-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.user-field {
+  grid-column: span 2;
+}
+
+
+/* ************************** */
+/* Footer construction */
+/* ************************** */
+
+.footer {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5.2rem;
+
+  padding: 3.2rem;
+  text-align: center;
+
+  border-top: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+.social-links {
+  list-style: none;
+
+  display: flex;
+  justify-content: center;
+  gap: 1.6rem;
+}
+
+.footer-heading {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 1.6rem;
+}
+
+.author-description {
+  font-size: 1.4rem;
+  line-height: 1.6;
+}
+
+.social-link:link,
+.social-link:visited {
+  display: block;
+
+  font-size: 3.2rem;
+  color: inherit;
+
+  transition: all 0.3s;
+}
+
+.social-link:hover,
+.social-link:active {
+  color: #171717;
+  transform: scale(1.1);
+}

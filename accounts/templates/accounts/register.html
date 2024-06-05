@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="register-page">
+  <h1 class="auth-heading">Welcome to <span class="primary-text">Eugenda</span>!</h1>
+
+  <div class="form-box">
+    <form action="{% url "accounts:register" %}" method="post">
+      {% csrf_token %}
+
+      <div class="grid register-grid fields-container">
+        {% for field in form %}
+          <div class="{% if field.label == "Username" %}user-field{% endif %} field-container">
+            <label class="field-label" for="{{ field.id_for_label }}">{{ field.label }}*</label>
+
+            {% if field.label == "Password" or field.label == "Confirm password" %}
+              <div class="password-input">
+                <input class="field-input" type="password" id="{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.field.widget.attrs.placeholder }}" required>
+                <ion-icon class="password-show-icon" name="eye-outline"></ion-icon>
+              </div>
+            {% else %}
+              {{ field }}
+            {% endif %}
+
+            {% for error in field.errors %}
+              <p class="form-error">{{ error }}</p>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+
+      <div class="auth-links">
+        <a class="link" href="{% url "accounts:login" %}">Already have an accout?</a>
+      </div>
+    </form>
+  </div>
+
+</div>
+
+{% endblock content %}
