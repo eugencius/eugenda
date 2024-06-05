@@ -1,0 +1,14 @@
+<div class="messages-container">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="message {{ message.tags }}">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <span>{{ message }}</span>
+        
+        <button class="btn notification-close">
+          <ion-icon class="icon-close" name="close-circle-outline"></ion-icon>
+        </button>
+      </div>  
+    {% endfor %}
+  {% endif %}
+</div>
