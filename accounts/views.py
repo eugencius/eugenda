@@ -30,7 +30,8 @@ def register_view(request):
         form = forms.RegisterForm()
 
     return render(request, 'accounts/register.html', {
-        "form": form
+        "form": form,
+        "exclude_navbar": True,
     })
 
 
@@ -51,5 +52,6 @@ def login_view(request):
     login_form = forms.LoginForm()
 
     return render(request, 'accounts/login.html', {
-        "form": login_form
+        "form": login_form,
+        "exclude_navbar": True,
     })
