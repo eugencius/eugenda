@@ -31,4 +31,5 @@ STATICFILES_DIRS = [
 MESSAGE_TAGS = {
     messages.SUCCESS: "notification message-success",
     messages.ERROR: "notification message-error",
+    messages.WARNING: "notification message-warning",
 }

@@ -1,7 +1,6 @@
 "use strict"
 
 // Prevent "enter" key to create models
-
 window.addEventListener("keydown", function (e) {
   if (e.key == "Enter") {
     e.preventDefault()
@@ -9,7 +8,6 @@ window.addEventListener("keydown", function (e) {
 })
 
 // Close notification
-
 const notificationsContainer = document.querySelector(".messages-container")
 
 notificationsContainer.addEventListener("click", function (e) {
@@ -20,7 +18,6 @@ notificationsContainer.addEventListener("click", function (e) {
 })
 
 // Show/hide password
-
 const passwordInputs = document.querySelectorAll(".password-input")
 
 passwordInputs.forEach((el) => {
@@ -40,7 +37,6 @@ passwordInputs.forEach((el) => {
 })
 
 // Change color of field with error in form
-
 const errors = document.querySelectorAll(".form-error")
 
 if (errors) {
@@ -52,3 +48,17 @@ if (errors) {
     inputEl.style.border = "1px solid #f00"
   })
 }
+
+// Confirm to logout
+const formLogout = document.querySelector(".form-logout")
+
+formLogout.addEventListener("submit", function (e) {
+  e.preventDefault()
+
+  const confirmLogout = confirm("You really want to logout?")
+
+  if (confirmLogout) {
+    console.log("He confirmed")
+    formLogout.submit()
+  }
+})

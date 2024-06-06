@@ -41,6 +41,14 @@
   color: #a1a7a4;
 }
 
+.btn-logout {
+  display: inline;
+  border: none;
+  background: inherit;
+  color: inherit;
+  font-size: inherit;
+}
+
 
 /* ************************** */
 /* Messages (notification) */
@@ -74,14 +82,6 @@
   border-radius: 11px;
 }
 
-.message-success {
-  border-left: 11px solid #37b24d;
-}
-
-.message-error {
-  border-left: 11px solid #f03e3e;
-}
-
 .notification-close {
   display: flex;
   justify-content: center;
@@ -92,6 +92,18 @@
 
 .icon-close {
   font-size: 1.6rem;
+}
+
+.message-success {
+  border-left: 11px solid #37b24d;
+}
+
+.message-error {
+  border-left: 11px solid #f03e3e;
+}
+
+.message-warning {
+  border-left: 11px solid #f59f00;
 }
 
 /* ************************** */

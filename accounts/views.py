@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, logout
 from django.contrib import messages
 
 from . import forms
@@ -63,3 +63,13 @@ def login_view(request):
         "form": login_form,
         "exclude_navbar": True,
     })
+
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        messages.add_message(request, messages.WARNING,
+                             "You loggged out.")
+        return redirect('accounts:login')
+
+    return redirect('contacts:index')

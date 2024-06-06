@@ -7,7 +7,14 @@
     <ul class="main-nav-list">
       <li><a href="#" class="main-nav-link">Create</a></li>
       <li><a href="#" class="main-nav-link">Profile</a></li>
-      <li><a href="#" class="main-nav-link">Exit</a></li>
+      <li><a href="#" class="main-nav-link">
+        <form class="form-logout" action="{% url "accounts:logout" %}" method="post">
+          {% csrf_token %}
+          <button class="btn-logout" type="submit">
+            Exit
+          </button>
+        </form>
+      </a></li>
     </ul>
   </nav>
 </header>
