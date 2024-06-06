@@ -10,6 +10,9 @@ from . import forms
 
 
 def register_view(request):
+    if request.user.is_authenticated:
+        return redirect('contacts:index')
+
     if request.method == "POST":
         form = forms.RegisterForm(request.POST)
 
@@ -36,6 +39,9 @@ def register_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('contacts:index')
+
     if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get('password')
