@@ -1,4 +1,48 @@
 /* ************************** */
+/* Header */
+/* ************************** */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+
+  color: #d0d3d1;
+  background-color: #13221b;
+
+  padding: 1.2rem 6.4rem;
+}
+
+.header-logo {
+  font-family: serif;
+  color: #fff;
+  letter-spacing: 1px;
+  font-size: 2.8rem;
+}
+
+.main-nav-list {
+  display: flex;
+  list-style: none;
+  gap: 2.4rem;
+}
+
+.main-nav-link:link,
+.main-nav-link:visited {
+  font-size: 1.6rem;
+  color: #d0d3d1;
+  text-decoration: none;
+
+  transition: all 0.3s;
+}
+
+.main-nav-link:hover,
+.main-nav-link:active {
+  color: #a1a7a4;
+}
+
+
+/* ************************** */
 /* Messages (notification) */
 /* ************************** */
 
@@ -22,18 +66,20 @@
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
+  box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 
   font-size: 1.5rem;
-  padding: 1.2rem 1rem 1.2rem 3rem;
+  padding: 1.2rem 1rem 1.2rem 1.2rem;
   border-radius: 11px;
 }
 
 .message-success {
-  background-color: #37b24d;
+  border-left: 11px solid #37b24d;
 }
 
 .message-error {
-  background-color: #f03e3e
+  border-left: 11px solid #f03e3e;
 }
 
 .notification-close {
@@ -158,6 +204,53 @@
   grid-column: span 2;
 }
 
+/* ************************** */
+/* Contacts page */
+/* ************************** */
+
+.contacts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3.2rem 9.6rem;
+}
+
+.contacts-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2.4rem;
+}
+
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 5rem 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.397);
+  border-radius: 11px;
+}
+
+.card-img {
+  max-width: 6rem;
+  max-height: 6rem;
+}
+
+.person-icon {
+  width: 6rem;
+  height: 6rem;
+}
+
+.contact-name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+}
+
+.contact-p {
+  font-size: 1.4rem;
+}
+
 
 /* ************************** */
 /* Footer construction */
@@ -168,6 +261,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5.2rem;
+
+  color: #d0d3d1;
+  background-color: #13221b;
 
   padding: 3.2rem;
   text-align: center;
@@ -206,6 +302,6 @@
 
 .social-link:hover,
 .social-link:active {
-  color: #171717;
+  color: #a1a7a4;
   transform: scale(1.1);
 }

@@ -45,6 +45,8 @@ def login_view(request):
         if user:
             messages.add_message(request, messages.SUCCESS,
                                  "You logged sucessfully!")
+            return redirect('contacts:index')
+
         else:
             messages.add_message(request, messages.ERROR,
                                  "Your username or password are wrong")

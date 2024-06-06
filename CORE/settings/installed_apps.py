@@ -9,6 +9,7 @@ DJANGO_APPS = [
 
 PROJECT_APPS = [
     'accounts',
+    'contacts',
 ]
 
 
