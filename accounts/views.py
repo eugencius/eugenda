@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
 
 from . import forms
@@ -39,6 +39,8 @@ def register_view(request):
 
 
 def login_view(request):
+    next_page = request.GET.get('next', 'contacts:index')
+
     if request.user.is_authenticated:
         return redirect('contacts:index')
 
@@ -49,9 +51,11 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
 
         if user:
+            login(request, user)
+
             messages.add_message(request, messages.SUCCESS,
                                  "You logged sucessfully!")
-            return redirect('contacts:index')
+            return redirect(next_page)
 
         else:
             messages.add_message(request, messages.ERROR,
@@ -62,6 +66,7 @@ def login_view(request):
     return render(request, 'accounts/login.html', {
         "form": login_form,
         "exclude_navbar": True,
+        "next": next_page,
     })
 
 
