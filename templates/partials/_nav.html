@@ -1,11 +1,11 @@
 <header class="header">
-  <p class="header-logo">
+  <a class="header-logo" href="{% url "contacts:index" %}">
     Eugenda
-  </p>
+  </a>
 
   <nav class="main-nav">
     <ul class="main-nav-list">
-      <li><a href="#" class="main-nav-link">Create</a></li>
+      <li><a href="{% url "contacts:create" %}" class="main-nav-link">Create</a></li>
       <li><a href="#" class="main-nav-link">Profile</a></li>
       <li><a href="#" class="main-nav-link">
         <form class="form-logout" action="{% url "accounts:logout" %}" method="post">
