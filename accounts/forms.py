@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
-from templates.utils import set_placeholder
+from templates.static.utils import set_placeholder
 
 User = get_user_model()
 
