@@ -46,6 +46,7 @@ if (errors) {
 
     inputLabel.style.color = "#f00"
     inputEl.style.border = "1px solid #f00"
+    inputEl.style.color = "#f00"
   })
 }
 
