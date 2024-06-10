@@ -95,3 +95,13 @@ body {
 .margin-bottom-md {
   margin-bottom: 2.4rem;
 }
+
+.grid {
+  display: grid;
+  gap: 2.4rem;
+  margin-bottom: 3.2rem;
+}
+
+.grid-2-cols {
+  grid-template-columns: 1fr 1fr;
+}

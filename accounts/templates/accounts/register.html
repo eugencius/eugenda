@@ -10,7 +10,7 @@
     <form action="{% url "accounts:register" %}" method="post">
       {% csrf_token %}
 
-      <div class="grid register-grid fields-container">
+      <div class="grid grid-2-cols">
         {% for field in form %}
           <div class="{% if field.label == "Username" %}user-field{% endif %} field-container">
             <label class="field-label" for="{{ field.id_for_label }}">{{ field.label }}*</label>
