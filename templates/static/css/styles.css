@@ -15,11 +15,9 @@
 }
 
 .header-logo {
-  font-family: serif;
   color: #fff;
   letter-spacing: 1px;
   text-decoration: none;
-  font-size: 2.8rem;
 }
 
 .main-nav-list {
@@ -211,7 +209,7 @@
 /* Contacts page */
 /* ************************** */
 
-.contacts {
+.contacts-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -219,40 +217,70 @@
 }
 
 .contacts-list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2.4rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 3rem;
+  row-gap: 5rem;
+  max-width: 105rem;
 }
 
 .contact-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  padding: 5rem 1.2rem;
-  border: 1px solid rgba(0, 0, 0, 0.397);
+  padding: 3rem 4rem 10rem 4rem;
+  box-shadow: 0 1rem 3.2rem rgba(0, 0, 0, 0.08);
   border-radius: 11px;
+
+  transition: all 0.3s;
 }
 
-.card-img {
-  max-width: 6rem;
-  max-height: 6rem;
+.contact-card:hover {
+  transform: translateY(-1.2rem);
+  box-shadow: 0 3.2rem 6.4rem rgba(0, 0, 0, 0.05);
 }
 
-.person-icon {
+.contact-img-container {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+}
+
+.contact-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.contact-icon {
   width: 6rem;
   height: 6rem;
+  padding: 2rem;
+  border-radius: 50%;
+  background-color: #51695e;
+}
+
+.contact-info {
+  text-align: center;
 }
 
 .contact-name {
   font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1.2rem;
+  margin-bottom: 2rem;
 }
 
-.contact-p {
+.contact-info p {
   font-size: 1.4rem;
+  line-height: 1.6;
 }
+
 
 /* ************************** */
 /* Create contact page */

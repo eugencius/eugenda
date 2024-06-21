@@ -13,7 +13,10 @@ class Contact(models.Model):
     email = models.EmailField(blank=True)
     creation_date = models.DateTimeField(default=timezone.now)
     description = models.TextField()
-    image = models.ImageField(blank=True, upload_to='')
+    image = models.ImageField(blank=True, upload_to="images/")
+
+    def get_full_name(self):
+        return f"{self.name} {self.surname}"
 
     def __str__(self):
         return f"{self.name} {self.surname}"
