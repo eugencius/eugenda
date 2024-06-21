@@ -34,6 +34,7 @@ def create_contact(request):
             creator = User.objects.get(username=request.user.username)
             contact = form.save(commit=False)
             contact.creator = creator
+            contact.image = request.FILES.get("image")
 
             contact.save()
 

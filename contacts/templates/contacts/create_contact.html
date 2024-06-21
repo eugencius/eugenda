@@ -7,7 +7,7 @@
   <h1 class="auth-heading">Lets create a new contact!</h1>
 
   <div class="form-box create-contact">
-    <form action="{% url "contacts:create" %}" method="post">
+    <form action="{% url "contacts:create" %}" enctype="multipart/form-data" method="post">
       {% csrf_token %}
       
       <div class="grid grid-2-cols">
