@@ -1,6 +1,9 @@
+{% load static %}
+
 <header class="header">
   <a class="header-logo" href="{% url "contacts:index" %}">
-    Eugenda
+    {% comment %} <div class="eugenda-svg" role='img'></div> {% endcomment %}
+    <img src="{% get_media_prefix %}/icons/eugenda.svg" width="150" height="auto" alt="">
   </a>
 
   <nav class="main-nav">
