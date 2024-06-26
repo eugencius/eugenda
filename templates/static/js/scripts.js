@@ -1,20 +1,28 @@
 "use strict"
 
-// Prevent "enter" key to create models
-window.addEventListener("keydown", function (e) {
-  if (e.key == "Enter") {
-    e.preventDefault()
-  }
-})
+// // Prevent "enter" key to create models
+// window.addEventListener("keydown", function (e) {
+//   if (e.key == "Enter") {
+//     e.preventDefault()
+//   }
+// })
 
 // Close notification
-const notificationsContainer = document.querySelector(".messages-container")
+const closeNotification = (event) => {
+  const notificationElement = event.target.closest(".notification")
 
-notificationsContainer.addEventListener("click", function (e) {
-  if (e.target.classList.contains("icon-close")) {
-    const notificationElement = e.target.parentNode.parentNode
+  if (event.target.classList.contains("icon-close")) {
     notificationElement.remove()
   }
+
+  const notifContainer = document.querySelector(".messages-container")
+  if (notifContainer.children.length === 0) {
+    notifContainer.remove()
+  }
+}
+
+document.querySelector(".messages-container").addEventListener("click", (e) => {
+  closeNotification(e)
 })
 
 // Show/hide password
