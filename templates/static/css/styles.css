@@ -209,6 +209,12 @@
 
 .contacts-page {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contacts-container {
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 3.2rem 9.6rem;
@@ -305,6 +311,60 @@
 .image-input {
   grid-column: span 2;
 }
+
+/* ************************** */
+/* Paginator */
+/* ************************** */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 3.2rem;
+  margin-bottom: 6rem;
+  list-style: none;
+}
+
+.page-link {
+  font-size: 1.6rem;
+  color: #666;
+  border-radius: 50%;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.page-link:hover {
+  color: #000;
+}
+
+.page-item {
+  width: 3.2rem;
+  height: 3.2rem;
+  line-height: 3.2rem;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.page-item.page-active {
+  background-color: #254336;
+}
+
+.page-active .page-link {
+  color: #fff;
+}
+
+.page-icon {
+  padding: 0.8rem;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.page-icon:active {
+  color: #fff;
+  background-color: #254336;
+}
+
+
+
 
 /* ************************** */
 /* Footer construction */

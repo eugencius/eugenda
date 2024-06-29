@@ -1,0 +1,34 @@
+{% if is_paginated %}
+  <nav class="pagination-container">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+            <ion-icon class="page-icon" name="chevron-back-outline"></ion-icon>      
+          </a>
+        </li>
+      {% endif %}
+
+      {% for page in page_range %}
+        {% if page == current_page %}
+          <li class="page-item page-active">
+            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+          </li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+          </li>
+        {% endif %}
+    
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+              <ion-icon class="page-icon" name="chevron-forward-outline"></ion-icon>
+            </a>
+          </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}

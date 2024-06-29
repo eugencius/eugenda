@@ -2,26 +2,31 @@
 
 {% block content %}
   <div class="contacts-page">
-    <!-- Example contact card with image -->
-    <div class="contacts-list">
-      {% for contact in contacts  %}
-      <div class="contact-card">
-        <div class="contact-img-container">
-          {% if contact.image %}
-            <img class="contact-image" src="{{ contact.image.url }}" alt="A contact photo">
-          {% else %}
-            <ion-icon class="contact-icon" name="person-outline"></ion-icon>
-          {% endif %}
+    <div class="contacts-container">
+      <div class="contacts-list">
+        {% for contact in page_obj  %}
+        <div class="contact-card">
+          <div class="contact-img-container">
+            {% if contact.image %}
+              <img class="contact-image" src="{{ contact.image.url }}" alt="A contact photo">
+            {% else %}
+              <ion-icon class="contact-icon" name="person-outline"></ion-icon>
+            {% endif %}
+          </div>
+    
+          <div class="contact-info">
+            <h2 class="contact-name">{{ contact.get_full_name }}</h2>
+            <p>E-mail: {{ contact.email }}</p>
+            <p>Phone: {{ contact.phone }}</p>
+            <p>Category: {{ contact.category }}</p>
+          </div>
         </div>
-  
-        <div class="contact-info">
-          <h2 class="contact-name">{{ contact.get_full_name }}</h2>
-          <p>E-mail: {{ contact.email }}</p>
-          <p>Phone: {{ contact.phone }}</p>
-          <p>Category: {{ contact.category }}</p>
-        </div>
+        {% endfor %}    
       </div>
-      {% endfor %}    
     </div>
+
+
+    {% include "partials/_pagination.html" %}
+
   </div>
 {% endblock content %}
