@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Contact
+from .models import Contact, Category
 
 
 @admin.register(Contact)
@@ -15,3 +15,6 @@ class ContactAdmin(admin.ModelAdmin):
         "creator",
     ]
     list_display_links = ["id", "name", "surname"]
+
+
+admin.site.register(Category)

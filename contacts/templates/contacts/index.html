@@ -18,7 +18,9 @@
             <h2 class="contact-name">{{ contact.get_full_name }}</h2>
             <p>E-mail: {{ contact.email }}</p>
             <p>Phone: {{ contact.phone }}</p>
-            <p>Category: {{ contact.category }}</p>
+            {% if contact.category %}
+              <p>Category: {{ contact.category }}</p>
+            {% endif %}
           </div>
         </div>
         {% endfor %}    
