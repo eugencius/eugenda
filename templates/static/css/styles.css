@@ -26,6 +26,11 @@
   gap: 2.4rem;
 }
 
+.main-nav-list li {
+  display: flex;
+  align-items: center;
+}
+
 .main-nav-link:link,
 .main-nav-link:visited {
   font-size: 1.6rem;
@@ -46,6 +51,52 @@
   background: inherit;
   color: inherit;
   font-size: inherit;
+}
+
+.search-form {
+  display: flex;
+}
+
+.input-search {
+  height: 3.4rem;
+  padding: 0 0.8rem;
+
+  font-size: 1.4rem;
+  font-family: inherit;
+
+  border: none;
+  border-top-left-radius: 9px;
+  border-bottom-left-radius: 9px;
+
+  transition: all 0.3s ease-in;
+}
+
+.btn-search {
+  display: flex;
+  align-items: center;
+
+  height: 3.4rem;
+  width: 3.4rem;
+  padding: 0.4rem 0.8rem;
+
+  background-color: #6B8A7A;
+  color: #fff;
+
+  border: none;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+
+  transition: all 0.3s ease-out;
+}
+
+.input-search:focus,
+.btn-search:focus {
+  /* outline: none; */
+  outline: rgba(107, 138, 122, 0.6) 3px solid;
+}
+
+.search-icon {
+  font-size: 2rem;
 }
 
 

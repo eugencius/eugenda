@@ -8,6 +8,14 @@
 
   <nav class="main-nav">
     <ul class="main-nav-list">
+      <li>
+        <form class="search-form" action="{% url "contacts:search" %}" method="GET">
+          <input type="text" class="input-search" name="q" id="input-search" placeholder="Search for a contact">
+          <button class="btn-search" type="submit">
+            <ion-icon class="search-icon" name="search-outline"></ion-icon>
+          </button>
+        </form>
+      </li>
       <li><a href="{% url "contacts:create" %}" class="main-nav-link">Create</a></li>
       <li><a href="#" class="main-nav-link">Profile</a></li>
       <li><a href="#" class="main-nav-link">
