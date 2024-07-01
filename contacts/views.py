@@ -68,6 +68,18 @@ class SearchView(IndexBaseView):
 
         return qs
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        search_term = self.request.GET.get("q", "").strip()
+
+        context.update(
+            {
+                "search_query": f"&q={search_term}",
+            }
+        )
+
+        return context
+
 
 @login_required(login_url=LOGIN_URL)
 def create_contact(request):
