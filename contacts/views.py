@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.core.paginator import Paginator
 from django.db.models import Q
+from django.views.generic import ListView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from . import forms
 from .models import Contact
@@ -13,65 +14,59 @@ from templates.static import utils
 
 User = get_user_model()
 LOGIN_URL = "accounts:login"
+PER_PAGE = 9
 
 
 # Create your views here.
 
 
-@login_required(login_url=LOGIN_URL)
-def index_view(request):
-    user = User.objects.get(username=request.user.username)
+class IndexBaseView(LoginRequiredMixin, ListView):
+    model = Contact
+    ordering = ["-id"]
+    context_object_name = "contacts"
+    template_name = "contacts/index.html"
+    login_url = LOGIN_URL
+    redirect_field_name = "next"
 
-    per_page = 9
-    contacts = Contact.objects.filter(creator=user).order_by("-id")
-    paginator = Paginator(contacts, 9)
+    def get_queryset(self):
+        qs = super().get_queryset()
+        user = User.objects.get(username=self.request.user.username)
 
-    current_page = int(request.GET.get("page", 1))
-    page_obj = paginator.get_page(current_page)
-    page_range = utils.make_pagination(current_page, paginator.page_range, max_pages=6)
+        qs = qs.filter(creator=user)
 
-    return render(
-        request,
-        "contacts/index.html",
-        {
-            "page_range": page_range,
-            "page_obj": page_obj,
-            "current_page": current_page,
-            "is_paginated": paginator.count > per_page,
-        },
-    )
+        return qs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        page_obj, page_range, current_page = utils.make_pagination(
+            request=self.request,
+            queryset=context.get("contacts"),
+            per_page=PER_PAGE,
+        )
+
+        context.update(
+            {
+                "contacts": page_obj,
+                "page_range": page_range,
+                "current_page": current_page,
+                "is_paginated": len(page_range) > 1,
+            }
+        )
+
+        return context
 
 
-@login_required(login_url=LOGIN_URL)
-def search(request):
-    user = User.objects.get(username=request.user.username)
-    search_term = request.GET.get("q", "").strip()
+class SearchView(IndexBaseView):
+    def get_queryset(self):
+        qs = super().get_queryset()
 
-    per_page = 9
+        search_term = self.request.GET.get("q", "").strip()
+        qs = qs.filter(
+            Q(name__icontains=search_term) | Q(surname__icontains=search_term)
+        )
 
-    contacts = Contact.objects.filter(
-        Q(name__icontains=search_term) | Q(surname__icontains=search_term), creator=user
-    ).order_by("-id")
-
-    paginator = Paginator(contacts, 9)
-
-    current_page = int(request.GET.get("page", 1))
-    page_obj = paginator.get_page(current_page)
-    page_range = utils.make_pagination(current_page, paginator.page_range, max_pages=6)
-
-    if not search_term:
-        return redirect("contacts:index")
-
-    return render(
-        request,
-        "contacts/index.html",
-        {
-            "page_range": page_range,
-            "page_obj": page_obj,
-            "current_page": current_page,
-            "is_paginated": paginator.count > per_page,
-        },
-    )
+        return qs
 
 
 @login_required(login_url=LOGIN_URL)
