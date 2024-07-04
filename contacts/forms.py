@@ -15,7 +15,9 @@ class CreateContactForm(forms.ModelForm):
             {"container_class": "description-input"}
         )
 
-        self.fields["image"].widget.attrs.update({"container_class": "image-input"})
+        self.fields["category"]
+
+        # self.fields["image"].widget.attrs.update({"container_class": "image-input"})
 
         for field_name in self.fields:
             self.fields[field_name].widget.attrs.update({"class": "field-input"})
@@ -27,7 +29,15 @@ class CreateContactForm(forms.ModelForm):
 
     class Meta:
         model = Contact
-        fields = ["name", "surname", "phone", "email", "description", "image"]
+        fields = [
+            "name",
+            "surname",
+            "phone",
+            "email",
+            "description",
+            "image",
+            "category",
+        ]
 
     def clean_phone(self):
         phone = self.cleaned_data.get("phone")
