@@ -21,9 +21,11 @@ const closeNotification = (event) => {
   }
 }
 
-document.querySelector(".messages-container").addEventListener("click", (e) => {
-  closeNotification(e)
-})
+document
+  .querySelector(".messages-container")
+  ?.addEventListener("click", (e) => {
+    closeNotification(e)
+  })
 
 // Show/hide password
 const passwordInputs = document.querySelectorAll(".password-input")
@@ -61,7 +63,7 @@ if (errors) {
 // Confirm to logout
 const formLogout = document.querySelector(".form-logout")
 
-formLogout.addEventListener("submit", function (e) {
+formLogout?.addEventListener("submit", function (e) {
   e.preventDefault()
 
   const confirmLogout = confirm("You really want to logout?")
