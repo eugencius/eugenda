@@ -20,6 +20,12 @@
                 <input class="field-input" type="password" id="{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.field.widget.attrs.placeholder }}" required>
                 <ion-icon class="password-show-icon" name="eye-outline"></ion-icon>
               </div>
+              
+              {% if field.help_text %}
+                <p class="form-help-text">
+                  {{ field.help_text }}
+                </p>
+              {% endif %}
             {% else %}
               {{ field }}
             {% endif %}
