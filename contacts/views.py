@@ -1,4 +1,6 @@
 from typing import Any
+from django.forms import BaseModelForm
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -6,6 +8,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import CreateView
 
 from . import forms
 from .models import Contact
@@ -81,26 +84,23 @@ class SearchView(IndexBaseView):
         return context
 
 
-@login_required(login_url=LOGIN_URL)
-def create_contact(request):
-    if request.method == "POST":
-        form = forms.CreateContactForm(request.POST)
+class CreateContact(LoginRequiredMixin, CreateView):
+    model = Contact
+    form_class = forms.CreateContactForm
+    template_name = "contacts/create_contact.html"
+    login_url = LOGIN_URL
+    redirect_field_name = "next"
 
-        if form.is_valid():
-            creator = User.objects.get(username=request.user.username)
-            contact = form.save(commit=False)
-            contact.creator = creator
-            contact.image = request.FILES.get("image")
+    def form_valid(self, form):
+        creator = User.objects.get(username=self.request.user.username)
+        contact = form.save(commit=False)
+        contact.creator = creator
+        contact.image = self.request.FILES.get("image")
 
-            contact.save()
+        contact.save()
 
-            messages.add_message(
-                request, messages.SUCCESS, "A new contact was created!"
-            )
+        messages.add_message(
+            self.request, messages.SUCCESS, "A new contact was created!"
+        )
 
-            return redirect("contacts:index")
-
-    else:
-        form = forms.CreateContactForm()
-
-    return render(request, "contacts/create_contact.html", {"form": form})
+        return redirect("contacts:index")

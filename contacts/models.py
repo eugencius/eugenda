@@ -30,7 +30,7 @@ class Contact(models.Model):
     image = models.ImageField(blank=True, upload_to="images/")
 
     def get_full_name(self):
-        return f"{self.name} {self.surname}"
+        return self.name if not self.surname else f"{self.name} {self.surname}"
 
     def __str__(self):
         return f"{self.name} {self.surname}"

@@ -39,6 +39,21 @@ class CreateContactForm(forms.ModelForm):
             "category",
         ]
 
+    def clean(self):
+        fields = self.cleaned_data
+
+        name = fields.get("name")
+        surname = fields.get("surname")
+
+        if name and surname and name == surname:
+            error = "The name and surname cannot be equal."
+            raise ValidationError(
+                {
+                    "name": error,
+                    "surname": error,
+                }
+            )
+
     def clean_phone(self):
         phone = self.cleaned_data.get("phone")
 
