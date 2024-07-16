@@ -1,12 +1,8 @@
-from typing import Any
-from django.forms import BaseModelForm
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.db.models import Q
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 
@@ -104,3 +100,11 @@ class CreateContact(LoginRequiredMixin, CreateView):
         )
 
         return redirect("contacts:index")
+
+
+class ContactDetailsView(LoginRequiredMixin, DetailView):
+    model = Contact
+    template_name = "contacts/contact_details.html"
+    login_url = LOGIN_URL
+    pk_url_kwarg = "pk"
+    context_object_name = "contact"
