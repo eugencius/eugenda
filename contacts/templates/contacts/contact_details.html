@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<div class="contact-details-page">
+  <div class="details-img-box">
+    <img class="details-contact-image" src="{{ contact.image.url }}" alt="A contact photo">
+  </div>
+  <div class="details-info-box">
+    <ul class="details-list">
+      <li>
+        <h1 class="heading-primary">{{ contact.get_full_name }}</h1>
+      </li>
+
+      <li>
+        <p class="info-title">
+          <ion-icon class="details-icon" name="mail-outline"></ion-icon>
+          <span>E-mail</span>
+        </p>
+        <p class="information" >{{ contact.email }}</p>
+      </li>
+      
+      <li>
+        <p class="info-title">
+          <ion-icon class="details-icon" name="call-outline"></ion-icon>
+          <span>Phone</span>
+        </p>
+        <p class="information">{{ contact.phone}}</p>
+      </li>
+
+      {% if contact.category %}
+        <li>
+          <p class="info-title">
+            <ion-icon class="details-icon" name="list-outline"></ion-icon>
+            <span>Category</span>
+          </p>
+          <p class="information" >{{ contact.category }}</p>
+        </li>
+      {% endif %}
+        
+      <li>
+        <p class="info-title">
+          <ion-icon class="details-icon" name="document-text-outline"></ion-icon>
+          <span>Description</span>
+        </p>
+        <p class="contact-description" >{{contact.description}}</p>
+      </li>
+    </ul>
+
+    <div class="contact-actions">
+      <a class="action-link" href="#">
+        <ion-icon class="edit-icon" name="create-outline"></ion-icon>
+        <span>Edit Contact</span>
+      </a>
+      <a class="action-link" href="#">
+        <ion-icon class="delete-icon" name="trash-outline"></ion-icon>
+        <span>Delete Contact</span>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock content %}
