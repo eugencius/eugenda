@@ -1,5 +1,9 @@
+import os
+
 from django.db import models
+from django.conf import settings
 from django.utils import timezone
+from django.core.files import File
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -34,3 +38,12 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.surname}"
+
+    def save(self, *args, **kwargs):
+        if not self.image:
+            default_image_path = os.path.join("images", "default.png")
+
+            with open(os.path.join(settings.MEDIA_ROOT, default_image_path), "rb") as f:
+                self.image.save("default.png", File(f), save=False)
+
+        super().save(*args, **kwargs)
