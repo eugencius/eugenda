@@ -105,3 +105,18 @@ body {
 .grid-2-cols {
   grid-template-columns: 1fr 1fr;
 }
+
+.form-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn-default {
+  display: inline;
+  border: none;
+  background: inherit;
+  color: inherit;
+  font-size: inherit;
+  cursor: pointer;
+}
