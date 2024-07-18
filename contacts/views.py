@@ -1,13 +1,11 @@
-from typing import Any
-from django.http import HttpRequest
-from django.http.response import HttpResponse
+from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from . import forms
 from .models import Contact
@@ -119,3 +117,13 @@ class EditContact(LoginRequiredMixin, UpdateView):
     login_url = LOGIN_URL
     pk_url_kwarg = "pk"
     template_name = "contacts/edit_contact.html"
+
+
+class DeleteContact(LoginRequiredMixin, DeleteView):
+    model = Contact
+    login_url = LOGIN_URL
+    success_url = reverse_lazy("contacts:index")
+
+    def get(self, *args, **kwargs):
+        messages.add_message(self.request, messages.ERROR, "Ops! You can't do this.")
+        return redirect("contacts:index")

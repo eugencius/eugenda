@@ -53,10 +53,12 @@
         <ion-icon class="edit-icon" name="create-outline"></ion-icon>
         <span>Edit Contact</span>
       </a>
-      <a class="action-link" href="#">
+      
+      <form class="form-inline form-delete" action="{% url "contacts:delete" contact.id %}" method="post">
+        {% csrf_token %}
         <ion-icon class="delete-icon" name="trash-outline"></ion-icon>
-        <span>Delete Contact</span>
-      </a>
+        <button class="btn-default" type="submit">Delete Contact</button>
+      </form>
     </div>
   </div>
 </div>

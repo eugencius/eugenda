@@ -45,14 +45,6 @@
   color: #a1a7a4;
 }
 
-.btn-logout {
-  display: inline;
-  border: none;
-  background: inherit;
-  color: inherit;
-  font-size: inherit;
-}
-
 .search-form {
   display: flex;
 }
@@ -440,6 +432,15 @@
 
 .action-link:hover,
 .action-link:active {
+  color: #51695e;
+}
+
+.form-delete {
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.form-delete:hover {
   color: #51695e;
 }
 
