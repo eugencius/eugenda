@@ -370,6 +370,24 @@
 }
 
 /* ************************** */
+/* Edit contact */
+/* ************************** */
+
+.clear-image-input {
+  display: flex;
+  align-items: center;
+}
+
+.clear-image-input label {
+  font-size: 1.4rem;
+}
+
+.clear-image-input input {
+  margin-left: auto;
+}
+
+
+/* ************************** */
 /* Contact details page */
 /* ************************** */
 
@@ -391,8 +409,12 @@
   border-radius: 50%;
 }
 
+.details-img-box {
+  max-width: 30rem;
+}
+
 .details-info-box {
-  max-width: 90rem;
+  width: 90rem;
   position: relative;
 }
 

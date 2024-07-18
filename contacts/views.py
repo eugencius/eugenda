@@ -1,10 +1,13 @@
+from typing import Any
+from django.http import HttpRequest
+from django.http.response import HttpResponse
 from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from . import forms
 from .models import Contact
@@ -108,3 +111,11 @@ class ContactDetailsView(LoginRequiredMixin, DetailView):
     login_url = LOGIN_URL
     pk_url_kwarg = "pk"
     context_object_name = "contact"
+
+
+class EditContact(LoginRequiredMixin, UpdateView):
+    model = Contact
+    form_class = forms.CreateContactForm
+    login_url = LOGIN_URL
+    pk_url_kwarg = "pk"
+    template_name = "contacts/edit_contact.html"
