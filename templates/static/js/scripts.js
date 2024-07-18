@@ -60,16 +60,20 @@ if (errors) {
   })
 }
 
-// Confirm to logout
-const formLogout = document.querySelector(".form-logout")
+// Confirm action before submitting
+const confirmAction = function (elementClass, action) {
+  const form = document.querySelector(`.${elementClass}`)
 
-formLogout?.addEventListener("submit", function (e) {
-  e.preventDefault()
+  form?.addEventListener("submit", function (e) {
+    e.preventDefault()
 
-  const confirmLogout = confirm("You really want to logout?")
+    const confirmLogout = confirm(`Do you really want to ${action}?`)
 
-  if (confirmLogout) {
-    console.log("He confirmed")
-    formLogout.submit()
-  }
-})
+    if (confirmLogout) {
+      form.submit()
+    }
+  })
+}
+
+confirmAction("form-logout", "logout")
+confirmAction("form-delete", "delete this contact")
