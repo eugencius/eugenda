@@ -118,6 +118,13 @@ class EditContact(LoginRequiredMixin, UpdateView):
     pk_url_kwarg = "pk"
     template_name = "contacts/edit_contact.html"
 
+    def form_valid(self, form):
+        messages.add_message(
+            self.request, messages.SUCCESS, "Contact was successfully updated."
+        )
+
+        return super().form_valid(form)
+
 
 class DeleteContact(LoginRequiredMixin, DeleteView):
     model = Contact
@@ -127,3 +134,9 @@ class DeleteContact(LoginRequiredMixin, DeleteView):
     def get(self, *args, **kwargs):
         messages.add_message(self.request, messages.ERROR, "Ops! You can't do this.")
         return redirect("contacts:index")
+
+    def post(self, request, *args, **kwargs):
+        messages.add_message(
+            self.request, messages.SUCCESS, "The contact was successfully deleted."
+        )
+        return super().post(request, *args, **kwargs)
