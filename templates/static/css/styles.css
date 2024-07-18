@@ -45,14 +45,6 @@
   color: #a1a7a4;
 }
 
-.btn-logout {
-  display: inline;
-  border: none;
-  background: inherit;
-  color: inherit;
-  font-size: inherit;
-}
-
 .search-form {
   display: flex;
 }
@@ -370,6 +362,24 @@
 }
 
 /* ************************** */
+/* Edit contact */
+/* ************************** */
+
+.clear-image-input {
+  display: flex;
+  align-items: center;
+}
+
+.clear-image-input label {
+  font-size: 1.4rem;
+}
+
+.clear-image-input input {
+  margin-left: auto;
+}
+
+
+/* ************************** */
 /* Contact details page */
 /* ************************** */
 
@@ -391,8 +401,12 @@
   border-radius: 50%;
 }
 
+.details-img-box {
+  max-width: 30rem;
+}
+
 .details-info-box {
-  max-width: 90rem;
+  width: 90rem;
   position: relative;
 }
 
@@ -418,6 +432,15 @@
 
 .action-link:hover,
 .action-link:active {
+  color: #51695e;
+}
+
+.form-delete {
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.form-delete:hover {
   color: #51695e;
 }
 

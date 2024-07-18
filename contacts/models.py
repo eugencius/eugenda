@@ -1,6 +1,7 @@
 import os
 
 from django.db import models
+from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
 from django.core.files import File
@@ -38,6 +39,9 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.name} {self.surname}"
+
+    def get_absolute_url(self):
+        return reverse("contacts:details", kwargs={"pk": self.pk})
 
     def save(self, *args, **kwargs):
         if not self.image:

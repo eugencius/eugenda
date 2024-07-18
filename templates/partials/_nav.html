@@ -21,7 +21,7 @@
       <li><a href="#" class="main-nav-link">
         <form class="form-logout" action="{% url "accounts:logout" %}" method="post">
           {% csrf_token %}
-          <button class="btn-logout" type="submit">
+          <button class="btn-default" type="submit">
             Exit
           </button>
         </form>
