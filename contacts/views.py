@@ -33,6 +33,8 @@ class IndexBaseView(LoginRequiredMixin, ListView):
         user = User.objects.get(username=self.request.user.username)
 
         qs = qs.filter(creator=user)
+        qs = qs.select_related("category")
+        qs = qs.defer("creator", "creation_date", "description")
 
         return qs
 
