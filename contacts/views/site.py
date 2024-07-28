@@ -112,6 +112,17 @@ class ContactDetailsView(LoginRequiredMixin, DetailView):
     pk_url_kwarg = "pk"
     context_object_name = "contact"
 
+    def get(self, *args, **kwargs):
+        user = self.request.user
+
+        if self.get_object().creator != user:
+            messages.add_message(
+                self.request, messages.ERROR, "Ops! You can't do this."
+            )
+            return redirect("contacts:index")
+
+        return super().get(*args, **kwargs)
+
 
 class EditContact(LoginRequiredMixin, UpdateView):
     model = Contact
