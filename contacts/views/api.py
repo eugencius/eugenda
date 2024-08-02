@@ -1,16 +1,17 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.exceptions import NotFound
 
 from ..models import Contact, Category
 from ..serializers import ContactSerializer
 
 
-@api_view(http_method_names=["GET", "POST"])
-def contacts_api_list(request):
-    user = request.user
+class ContactsListAPI(APIView):
+    def get(self, request):
+        user = request.user
 
-    if request.method == "GET":
         contacts = (
             Contact.objects.filter(creator=user)
             .order_by("-id")
@@ -20,7 +21,8 @@ def contacts_api_list(request):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    if request.method == "POST":
+    def post(self, request):
+        user = request.user
         category_id = request.data.get("category_id")
 
         serializer = ContactSerializer(data=request.data)
@@ -30,19 +32,26 @@ def contacts_api_list(request):
         return Response(serializer.validated_data, status=status.HTTP_201_CREATED)
 
 
-@api_view(http_method_names=["GET", "PATCH", "DELETE"])
-def contacts_api_details(request, pk):
-    user = request.user
-    contact = Contact.objects.filter(creator=user, pk=pk).first()
+class ContactsDetailsAPI(APIView):
+    def get_contact(self, user, pk):
+        contact = Contact.objects.filter(creator=user, pk=pk).first()
 
-    if not contact:
-        return Response({"detail": "Eita!"}, status=status.HTTP_404_NOT_FOUND)
+        if not contact:
+            raise NotFound()
 
-    if request.method == "GET":
+        return contact
+
+    def get(self, request, pk):
+        user = request.user
+        contact = self.get_contact(user, pk)
+
         serializer = ContactSerializer(instance=contact, many=False)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    if request.method == "PATCH":
+    def patch(self, request, pk):
+        user = request.user
+        contact = self.get_contact(user, pk)
+
         serializer = ContactSerializer(
             instance=contact,
             data=request.data,
@@ -54,6 +63,7 @@ def contacts_api_details(request, pk):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    if request.method == "DELETE":
-        contact.delete()
+    def delete(self, request, pk):
+        user = request.user
+        self.get_contact(user, pk).delete()
         return Response(status=status.HTTP_200_OK)
