@@ -14,11 +14,8 @@ site = [
 ]
 
 api = [
-    path("api/create/", views.contacts_api_create, name="create_api"),
     path("api/list/", views.contacts_api_list, name="index_api"),
-    path("api/edit/<int:pk>", views.contacts_api_edit, name="update_api"),
     path("api/details/<int:pk>", views.contacts_api_details, name="details_api"),
-    path("api/delete/<int:pk>", views.contacts_api_delete, name="delete_api"),
 ]
 
 urlpatterns = site + api
