@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
 
 from ..models import Contact
@@ -20,6 +20,7 @@ class FilterQuerysetUser:
 class ContactsViewsetAPI(FilterQuerysetUser, ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
+    pagination_class = PageNumberPagination
 
     def get_queryset(self):
         qs = super().get_queryset().order_by("-id")

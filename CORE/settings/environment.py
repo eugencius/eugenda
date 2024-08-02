@@ -81,3 +81,9 @@ INTERNAL_IPS = [
     "127.0.0.1",
     # ...
 ]
+
+# Pagination in Django Rest Framework (DRF)
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": env("PER_PAGE"),
+}

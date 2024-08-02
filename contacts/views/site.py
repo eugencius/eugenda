@@ -11,10 +11,11 @@ from .. import forms
 from ..models import Contact
 from templates.static import utils
 
+from CORE.settings import env
 
 User = get_user_model()
 LOGIN_URL = "accounts:login"
-PER_PAGE = 9
+PER_PAGE = env("PER_PAGE")
 
 
 # Create your views here.
