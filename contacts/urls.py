@@ -14,9 +14,26 @@ site = [
 ]
 
 api = [
-    path("api/list/", views.ContactsListAPI.as_view(), name="index_api"),
     path(
-        "api/details/<int:pk>", views.ContactsDetailsAPI.as_view(), name="details_api"
+        "api/list/",
+        views.ContactsViewsetAPI.as_view(
+            {
+                "get": "list",
+                "post": "create",
+            }
+        ),
+        name="index_api",
+    ),
+    path(
+        "api/details/<int:pk>",
+        views.ContactsViewsetAPI.as_view(
+            {
+                "get": "retrieve",
+                "patch": "partial_update",
+                "delete": "destroy",
+            }
+        ),
+        name="details_api",
     ),
 ]
 

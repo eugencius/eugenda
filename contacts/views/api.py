@@ -1,6 +1,7 @@
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.viewsets import ModelViewSet
 
 from ..models import Contact
 from ..serializers import ContactSerializer
@@ -16,7 +17,7 @@ class FilterQuerysetUser:
         return qs
 
 
-class ContactsListAPI(FilterQuerysetUser, ListCreateAPIView):
+class ContactsViewsetAPI(FilterQuerysetUser, ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
 
@@ -38,8 +39,3 @@ class ContactsListAPI(FilterQuerysetUser, ListCreateAPIView):
         contact.save(creator=user)
 
         return Response(contact.data, status=status.HTTP_201_CREATED)
-
-
-class ContactsDetailsAPI(FilterQuerysetUser, RetrieveUpdateDestroyAPIView):
-    queryset = Contact.objects.all()
-    serializer_class = ContactSerializer
