@@ -1,8 +1,13 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
 from contacts import views
 
 app_name = "contacts"
+
+contacts_api_router = SimpleRouter()
+contacts_api_router.register("api", views.ContactsViewsetAPI, basename="recipes-api")
+print(contacts_api_router.urls)
 
 site = [
     path("", views.IndexBaseView.as_view(), name="index"),
@@ -13,28 +18,6 @@ site = [
     path("delete/<int:pk>", views.DeleteContact.as_view(), name="delete"),
 ]
 
-api = [
-    path(
-        "api/list/",
-        views.ContactsViewsetAPI.as_view(
-            {
-                "get": "list",
-                "post": "create",
-            }
-        ),
-        name="index_api",
-    ),
-    path(
-        "api/details/<int:pk>",
-        views.ContactsViewsetAPI.as_view(
-            {
-                "get": "retrieve",
-                "patch": "partial_update",
-                "delete": "destroy",
-            }
-        ),
-        name="details_api",
-    ),
-]
 
+api = contacts_api_router.urls
 urlpatterns = site + api
