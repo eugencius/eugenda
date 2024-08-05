@@ -1,13 +1,11 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, logout, login
 from django.contrib import messages
-from django.views.generic import FormView, View
-from django.http import HttpResponseRedirect
+from django.views.generic import View
 from django.views.generic.edit import CreateView
 from django.contrib.auth.models import User
 
-from . import forms
+from .. import forms
 
 
 # Create your views here.

@@ -7,14 +7,15 @@ from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from . import forms
-from .models import Contact
+from .. import forms
+from ..models import Contact
 from templates.static import utils
 
+from CORE.settings import env
 
 User = get_user_model()
 LOGIN_URL = "accounts:login"
-PER_PAGE = 9
+PER_PAGE = env("PER_PAGE")
 
 
 # Create your views here.
@@ -111,6 +112,17 @@ class ContactDetailsView(LoginRequiredMixin, DetailView):
     login_url = LOGIN_URL
     pk_url_kwarg = "pk"
     context_object_name = "contact"
+
+    def get(self, *args, **kwargs):
+        user = self.request.user
+
+        if self.get_object().creator != user:
+            messages.add_message(
+                self.request, messages.ERROR, "Ops! You can't do this."
+            )
+            return redirect("contacts:index")
+
+        return super().get(*args, **kwargs)
 
 
 class EditContact(LoginRequiredMixin, UpdateView):
