@@ -2,8 +2,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from ..models import Contact
+from ..permissions import IsOwner
 from ..serializers import ContactSerializer
 
 
@@ -21,13 +23,11 @@ class ContactsViewsetAPI(FilterQuerysetUser, ModelViewSet):
     queryset = Contact.objects.all()
     serializer_class = ContactSerializer
     pagination_class = PageNumberPagination
+    permission_classes = [IsAuthenticated, IsOwner]
 
     def get_queryset(self):
         qs = super().get_queryset().order_by("-id")
         return qs
-
-    def list(self, request, *args, **kwargs):
-        return super().list(request, *args, **kwargs)
 
     def create(self, request, *args, **kwargs):
         user = request.user
